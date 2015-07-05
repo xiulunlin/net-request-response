@@ -8,6 +8,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/strongloop/express"
+    "url": "https://github.com/xiulunlin/net-request-response.git"
   }
 }
