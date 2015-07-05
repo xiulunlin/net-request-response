@@ -1,0 +1,13 @@
+{
+  "name": "net-request-response",
+  "description":"It implements request-response model for net.socket.",
+  "version": "0.0.1",
+  "author":{
+    "name":"Allen Show",
+    "email":"xiulunlin@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/strongloop/express"
+  }
+}
