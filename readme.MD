@@ -42,42 +42,46 @@ It is a node module implements request-response model with for net.socket to mak
     	});
 	})
 
-##API
-###Net-Request-Reponse Methods
-####createServer(options)
+## API
+### Net-Request-Reponse Methods
+#### createServer(options)
 `options` see nodejs document [net.createServer](https://nodejs.org/api/all.html#all_net_createserver_options_connectionlistener).  
 `callback` is not supported, use `clientConnected` event instead.
 
 
-####createClient(options)
+#### createClient(options)
+
 `options` see nodejs document [net.createConnection](https://nodejs.org/api/all.html#all_net_createconnection_options_connectionlistener).  
 `callback` is not supported, use `connect` event instead.
-####Client
+#### Client
+
 `new nrr.Client()` can also be used to create a new client and then you can invoke `client.connect()` to connect lately
 
-###Server Events
+### Server Events
+
 `server` will emit some events about the state of qtpServer
-####'ready'
+#### 'ready'
+
 `server` will emit `ready` event once the `server` is listening correctly  
  							
  	server.on('ready',function(){
  		console.log(this.address())
  	});
-####'clientConnected'
+#### 'clientConnected'
 `server` will emit `clientConnected` event if a client is connected to this server. A `client` object will be passed as an argument
 
 	server.on('clientConnected',function(client){
  		//handler client here
  	});
  	
-####'error'
+#### 'error'
 `server` will emit `error` event when an error was caught. An `error` object will be passed as an argument
-####'close'
+#### 'close'
 Fired when `server` is closed and stopped from listening
-###Server Methods
-####listen(options)
+### Server Methods
+#### listen(options)
 `options` see nodejs document [net.Server.listen](https://nodejs.org/api/all.html#all_server_listen_port_host_backlog_callback). `Callback` is not supported, use 'ready' event instead.
-####close()
+#### close()
 See nodejs document [net.Server.close](https://nodejs.org/api/all.html#all_server_close_callback)
 ####address()
 Return an address object

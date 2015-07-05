@@ -1,7 +1,7 @@
 {
   "name": "net-request-response",
   "description":"It implements request-response model for net.socket.",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "author":{
     "name":"Allen Show",
     "email":"xiulunlin@live.com"

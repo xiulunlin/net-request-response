@@ -1,5 +1,5 @@
 0 info it worked if it ends with ok
-1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish', '--force' ]
+1 verbose cli [ 'node', '/usr/local/bin/npm', '-f', 'publish' ]
 2 info using npm@2.9.1
 3 info using node@v0.12.3
 4 warn using --force I sure hope you know what you are doing.
@@ -30,13 +30,13 @@
 18 silly publish    { type: 'git',
 18 silly publish      url: 'git+https://github.com/xiulunlin/net-request-response.git' },
 18 silly publish   readme: '\n## Net-Request-Response\n\nIt is a node module implements request-response model with for net.socket to make communication quicker and easier. It uses a custom protocol.\n\n### How to install\n\n`npm install net-request-response`\n\n## Quick Start\n\tvar nrr = require(\'../index\');\n\n\t//server\n\n\tvar server = nrr.createServer();\n\n\tserver.on(\'clientConnected\', function (client) {\n    \tclient.on(\'onRequest\', function (payload, response){\n        \tconsole.log(\'Message from client: \'+payload.toString());\n        \t//response\n        \tresponse(\'Okay, I am server.\');\n    \t});\n\t});\n\t\n\tserver.listen(8080);\n\t\n\t//client\n\t\n\tvar client =new nrr.Client();\n\t\n\tclient.connect(8080);\n\n\tclient.on(\'connect\', function () {\n\n    \t//send a string or buffer\n    \tthis.send(\'Hello, I am client.\', function (error, responsePayload){\n        \tif (error) {\n            \tconsole.log(error);\n            \treturn;\n        \t}\n        \tconsole.log(\'Response from server: \'+responsePayload.toString());\n    \t});\n\t})\n\n##API\n###Net-Request-Reponse Methods\n####createServer(options)\n`options` see nodejs document [net.createServer](https://nodejs.org/api/all.html#all_net_createserver_options_connectionlistener).  \n`callback` is not supported, use `clientConnected` event instead.\n\n\n####createClient(options)\n`options` see nodejs document [net.createConnection](https://nodejs.org/api/all.html#all_net_createconnection_options_connectionlistener).  \n`callback` is not supported, use `connect` event instead.\n####Client\n`new nrr.Client()` can also be used to create a new client and then you can invoke `client.connect()` to connect lately\n\n###Server Events\n`server` will emit some events about the state of qtpServer\n####\'ready\'\n`server` will emit `ready` event once the `server` is listening correctly  \n \t\t\t\t\t\t\t\n \tserver.on(\'ready\',function(){\n \t\tconsole.log(this.address())\n \t});\n####\'clientConnected\'\n`server` will emit `clientConnected` event if a client is connected to this server. A `client` object will be passed as an argument\n\n\tserver.on(\'clientConnected\',function(client){\n \t\t//handler client here\n \t});\n \t\n####\'error\'\n`server` will emit `error` event when an error was caught. An `error` object will be passed as an argument\n####\'close\'\nFired when `server` is closed and stopped from listening\n###Server Methods\n####listen(options)\n`options` see nodejs document [net.Server.listen](https://nodejs.org/api/all.html#all_server_listen_port_host_backlog_callback). `Callback` is not supported, use \'ready\' event instead.\n####close()\nSee nodejs document [net.Server.close](https://nodejs.org/api/all.html#all_server_close_callback)\n####address()\nReturn an address object\n###Client Events\n`client` will emit some events when a request or response was handled\n####\'onRequest\'\n`client` will emit `onRequest` event when it receives request from another side of socket with arguments `payload` and `reponse`:\n\n* `payload`. Buffer.\n* `response`. A function to call if you want to response this request.\n\n<b></b> \n\n\tclient.on(\'onRequest\',function(payload,response){\n\t\tconsole.log(payload);\n\t\t//response with a buffer or string\n\t\tresponse(\'message received\');\n\t});\n \t\t\n####\'data\'\nraw tcp data will be passed to `data` event\n\n\tclient.on(\'data\',function(data){\n\t\t//raw tcp data, including header\n \t\tconsole.log(data);\n \t});\n \t\n####\'error\'\n`client` will emit `error` event when an error was caught. An `error` object will be passed as an argument\n####\'close\'\nfired when `client` is closed\n###Client Methods\n####send(payload,onResponse)  \nA request can be sent either on server side or client side\n\n* `payload`. Buffer or String to be sent.\n* `onResponse`. Function, it get invoked with arguments `error` and `payload` if a response is received.\n\n<b></b>\n\t\t\n\tclient.send(\'Hello\',function(error,payload){\n    \t//get response\n    \tif(error){\n    \t\tconsole.log(error);\n    \t\treturn;\n    \t}\n    \t\t\n    \t//payload is buffer\n    \tconsole.log(payload);\n\t});\n####close()\n##Message Format\n* `type`: qtp use the first `1` bit to mark `request` and `response`: 0 for request and 1 for response\n* `sequenceNumber`: the next `15` bits is `sequenceNumber` which is used to distinguish different messages, it is automatically increased by 1 everytime and it will be reset to 0 if it reaches 32768\n* `remainingLength`: It stands for the length of message body and it is extendible. The first `1` bit of every byte is to mark the end of header (when the bit is 0) \n      \n      `00000101`           means length 5\n      `10000001 00000010`  means length 129   (1*2^7 + 2)\n* `payload`: Message body\n\n',
-18 silly publish   readmeFilename: 'readme.MD',
-18 silly publish   gitHead: '9d0d3842d383b0a0057d5270f640825e2945763b',
+18 silly publish   readmeFilename: 'README.md',
+18 silly publish   gitHead: 'd989c0a99fbc4cb3e83b1130a7390a8137778efc',
 18 silly publish   bugs: { url: 'https://github.com/xiulunlin/net-request-response/issues' },
 18 silly publish   homepage: 'https://github.com/xiulunlin/net-request-response#readme',
 18 silly publish   _id: 'net-request-response@0.0.5',
 18 silly publish   scripts: {},
-18 silly publish   _shasum: '86c444dc31fe1b910ec05383a96d5b1abc4fbfd8',
+18 silly publish   _shasum: 'ad3d02584f1436adeef6aebfd0fc7b0d962a8a01',
 18 silly publish   _from: '.' }
 19 verbose getPublishConfig undefined
 20 silly mapToRegistry name net-request-response
@@ -47,22 +47,22 @@
 25 silly publish uploading /Users/allenshow/.npm/net-request-response/0.0.5/package.tgz
 26 verbose request uri https://registry.npmjs.org/net-request-response
 27 verbose request sending authorization for write operation
-28 info attempt registry request try #1 at 2:28:40 PM
+28 info attempt registry request try #1 at 2:33:32 PM
 29 verbose request using bearer token for auth
-30 verbose request id 519234081df93b76
+30 verbose request id 86e1ff5cb7cbdc68
 31 http request PUT https://registry.npmjs.org/net-request-response
 32 http 403 https://registry.npmjs.org/net-request-response
 33 verbose headers { 'content-type': 'application/json',
 33 verbose headers   'cache-control': 'max-age=60',
 33 verbose headers   'content-length': '95',
 33 verbose headers   'accept-ranges': 'bytes',
-33 verbose headers   date: 'Sun, 05 Jul 2015 06:28:42 GMT',
+33 verbose headers   date: 'Sun, 05 Jul 2015 06:33:35 GMT',
 33 verbose headers   via: '1.1 varnish',
 33 verbose headers   connection: 'keep-alive',
-33 verbose headers   'x-served-by': 'cache-ord1723-ORD',
+33 verbose headers   'x-served-by': 'cache-lax1435-LAX',
 33 verbose headers   'x-cache': 'MISS',
 33 verbose headers   'x-cache-hits': '0',
-33 verbose headers   'x-timer': 'S1436077721.738223,VS0,VE1137' }
+33 verbose headers   'x-timer': 'S1436078014.182704,VS0,VE1080' }
 34 verbose request invalidating /Users/allenshow/.npm/registry.npmjs.org/net-request-response on PUT
 35 error publish Failed PUT 403
 36 verbose stack Error: "You cannot publish over the previously published version 0.0.5." : net-request-response
@@ -80,7 +80,7 @@
 38 verbose pkgid net-request-response
 39 verbose cwd /Users/allenshow/Documents/work/zhibo/node_modules/net-request-response
 40 error Darwin 14.4.0
-41 error argv "node" "/usr/local/bin/npm" "publish" "--force"
+41 error argv "node" "/usr/local/bin/npm" "-f" "publish"
 42 error node v0.12.3
 43 error npm  v2.9.1
 44 error code E403
