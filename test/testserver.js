@@ -31,3 +31,9 @@ client.on('connect', function () {
         console.log('Response from server: '+responsePayload.toString());
     });
 })
+
+client.on('timeout',function(){
+    console.log('timeout')
+})
+
+client.setTimeout(3000);
