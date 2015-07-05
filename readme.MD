@@ -87,7 +87,7 @@ Return an address object
 `client` will emit `onRequest` event when it receives request from another side of socket with arguments `payload` and `reponse`:
 
 * `payload`. Buffer.
-* `response`. A function to call if you want to response this request
+* `response`. A function to call if you want to response this request.
 
 <b></b> 
 
@@ -113,11 +113,11 @@ fired when `client` is closed
 ####send(payload,onResponse)  
 A request can be sent either on server side or client side
 
-* `payload`. Buffer or String to be sent
-* `onResponse`. Function, it get invoked with arguments `error` and `payload` if a response is received  
+* `payload`. Buffer or String to be sent.
+* `onResponse`. Function, it get invoked with arguments `error` and `payload` if a response is received.
 
-<br></br>
-
+<b></b>
+		
 	client.send('Hello',function(error,payload){
     	//get response
     	if(error){
