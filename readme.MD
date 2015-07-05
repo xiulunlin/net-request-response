@@ -83,9 +83,9 @@ Fired when `server` is closed and stopped from listening
 `options` see nodejs document [net.Server.listen](https://nodejs.org/api/all.html#all_server_listen_port_host_backlog_callback). `Callback` is not supported, use 'ready' event instead.
 #### close()
 See nodejs document [net.Server.close](https://nodejs.org/api/all.html#all_server_close_callback)
-####address()
+#### address()
 Return an address object
-###Client Events
+### Client Events
 `client` will emit some events when a request or response was handled
 ####'onRequest'
 `client` will emit `onRequest` event when it receives request from another side of socket with arguments `payload` and `reponse`:
@@ -101,7 +101,7 @@ Return an address object
 		response('message received');
 	});
  		
-####'data'
+#### 'data'
 raw tcp data will be passed to `data` event
 
 	client.on('data',function(data){
@@ -109,12 +109,12 @@ raw tcp data will be passed to `data` event
  		console.log(data);
  	});
  	
-####'error'
+#### 'error'
 `client` will emit `error` event when an error was caught. An `error` object will be passed as an argument
-####'close'
+#### 'close'
 fired when `client` is closed
-###Client Methods
-####send(payload,onResponse)  
+### Client Methods
+#### send(payload,onResponse)  
 A request can be sent either on server side or client side
 
 * `payload`. Buffer or String to be sent.
@@ -132,8 +132,8 @@ A request can be sent either on server side or client side
     	//payload is buffer
     	console.log(payload);
 	});
-####close()
-##Message Format
+#### close()
+## Message Format
 * `type`: qtp use the first `1` bit to mark `request` and `response`: 0 for request and 1 for response
 * `sequenceNumber`: the next `15` bits is `sequenceNumber` which is used to distinguish different messages, it is automatically increased by 1 everytime and it will be reset to 0 if it reaches 32768
 * `remainingLength`: It stands for the length of message body and it is extendible. The first `1` bit of every byte is to mark the end of header (when the bit is 0) 
