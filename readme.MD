@@ -114,9 +114,10 @@ fired when `client` is closed
 A request can be sent either on server side or client side
 
 * `payload`. Buffer or String to be sent
-* `onResponse`. Function, it get invoked with arguments `error` and `payload` if a response is received
+* `onResponse`. Function, it get invoked with arguments `error` and `payload` if a response is received  
+
 <br></br>
-	
+
 	client.send('Hello',function(error,payload){
     	//get response
     	if(error){
