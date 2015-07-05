@@ -1,7 +1,7 @@
 {
   "name": "net-request-response",
   "description":"It implements request-response model for net.socket.",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "author":{
     "name":"Allen Show",
     "email":"xiulunlin@live.com"
@@ -9,5 +9,10 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/xiulunlin/net-request-response.git"
-  }
+  },
+  "files": [
+    "Readme.md",
+    "index.js",
+    "lib/"
+  ]
 }
