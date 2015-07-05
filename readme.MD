@@ -82,7 +82,8 @@ Fired when `server` is closed and stopped from listening
 #### listen(options)
 `options` see nodejs document [net.Server.listen](https://nodejs.org/api/all.html#all_server_listen_port_host_backlog_callback). `Callback` is not supported, use 'ready' event instead.
 #### close()
-See nodejs document [net.Server.close](https://nodejs.org/api/all.html#all_server_close_callback)
+See nodejs document [net.Server.close](https://nodejs.org/api/all.html#all_server_close_callback).
+	
 #### address()
 Return an address object
 ### Client Events
