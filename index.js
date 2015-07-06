@@ -4,7 +4,6 @@
 
 var net=require('net');
 var Client=require('./lib/client');
-
 var Server=require('./lib/server');
 
 exports.createServer=function(options){
@@ -17,3 +16,4 @@ exports.createClient=function(options){
 }
 
 exports.Client=Client;
+exports.Server=Server;
