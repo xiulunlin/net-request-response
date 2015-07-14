@@ -1,5 +1,5 @@
 
-## Net-Request-Response
+# Net-Request-Response
 
 It is a node module implements request-response model with for net.socket to make communication quicker and easier. It uses a custom protocol.
 
